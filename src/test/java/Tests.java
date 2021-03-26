@@ -15,19 +15,10 @@ import static java.sql.DriverManager.getDriver;
 
 public class Tests extends SetupDriver {
 
-    public void handlePopupWindow() {
-        try {
-            new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("at-cv-lightbox-close")));
-            WebElement openWindow = driver.findElement(By.id("at-cv-lightbox-close"));
-            openWindow.click();
-        } catch (Exception a) {
-            System.out.println("window not open");
-        }
-    }
 
     @Test
     public void firstTest() {
-        handlePopupWindow();
+
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
         WebElement simpleForm = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Simple Form Demo']"));
@@ -44,7 +35,7 @@ public class Tests extends SetupDriver {
     @Test
 
     public void secondTest() {
-        handlePopupWindow();
+
 
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
@@ -63,7 +54,7 @@ public class Tests extends SetupDriver {
     @Test
 
     public void treeTest() {
-        handlePopupWindow();
+
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
         WebElement checkboxDemo = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Checkbox Demo']"));
@@ -81,7 +72,7 @@ public class Tests extends SetupDriver {
 
     public void fourthTest() {
 
-        handlePopupWindow();
+
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
         WebElement radioButtons = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Radio Buttons Demo']"));
@@ -100,7 +91,7 @@ public class Tests extends SetupDriver {
 
     @Test
     public void fifthTest() {
-        handlePopupWindow();
+
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
         WebElement dropDownList = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Select Dropdown List']"));
@@ -114,7 +105,7 @@ public class Tests extends SetupDriver {
 
     @Test
     public void sixthTest() {
-        handlePopupWindow();
+
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
         WebElement dropDownList = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Select Dropdown List']"));
@@ -134,14 +125,20 @@ public class Tests extends SetupDriver {
     @Test
 
     public void seventhTest() {
-        handlePopupWindow();
+
         WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
         inputForms.click();
         WebElement ajaxForm = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Ajax Form Submit']"));
         ajaxForm.click();
+        waitDriver();
         WebElement buttonSubmit = driver.findElement(By.xpath("//*[@id='btn-submit']"));
-        buttonSubmit.click();
+        waitDriver();
+        clickWithJS(buttonSubmit);
         WebElement fieldName = driver.findElement(By.xpath("//*[@id='title']"));
+        String actualResult = "rgb(255, 0, 0);";
+        String style = fieldName.getAttribute("style");
+        String[] s = style.split("solid ");
+        Assert.assertEquals(s[1], actualResult);
 
 
     }
@@ -149,15 +146,15 @@ public class Tests extends SetupDriver {
     @Test
 
     public void eighthTest() {
-        handlePopupWindow();
+
         WebElement datePickers = driver.findElement(By.xpath("//*[text()='Date pickers']"));
         datePickers.click();
         WebElement bootsStrap = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Bootstrap Date Picker']"));
         bootsStrap.click();
-        WebElement calendar = driver.findElement(By.xpath("//div[@class='input-group date']"));
-        calendar.click();
-        Calendar cal = Calendar.getInstance((TimeZone) driver.findElement(By.xpath("//*[@class='today day']")));
-        cal.add(Calendar.DATE, -1);
+        WebElement calendarclick = driver.findElement(By.xpath("//div[@class='input-group date']"));
+        calendarclick.click();
+        WebElement calendar = driver.findElement(By.xpath("//*[@class='table-condensed']"));
+        yesterdayDate(calendarclick);
 
 
     }
