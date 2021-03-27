@@ -1,8 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SetupDriver {
@@ -25,14 +23,16 @@ public class SetupDriver {
         executor.executeScript("arguments[0].click();", element);
     }
 
-    public static String yesterdayDate(WebElement args) {
+    public static String yesterdayDate(WebElement element) {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime yesterday = today.minusDays(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String correctDate = yesterday.format(formatter);
-
+        element.sendKeys(correctDate);
+        element.sendKeys(Keys.ENTER);
         return correctDate;
     }
+
 
     @BeforeMethod
     public void beforeMethod() {

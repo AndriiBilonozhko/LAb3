@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -9,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import static java.sql.DriverManager.getDriver;
@@ -151,12 +153,88 @@ public class Tests extends SetupDriver {
         datePickers.click();
         WebElement bootsStrap = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Bootstrap Date Picker']"));
         bootsStrap.click();
-        WebElement calendarclick = driver.findElement(By.xpath("//div[@class='input-group date']"));
-        calendarclick.click();
-        WebElement calendar = driver.findElement(By.xpath("//*[@class='table-condensed']"));
-        yesterdayDate(calendarclick);
+        WebElement calendarClick = driver.findElement(By.xpath("//div[@class='input-group date']/input"));
+        String expectedDate = yesterdayDate(calendarClick);
+        String actualResult = calendarClick.getAttribute("value");
+        Assert.assertEquals(actualResult, expectedDate);
 
+    }
 
+    @Test
+    public void ninthTest() {
+
+        WebElement table = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Table']"));
+        table.click();
+        WebElement tableDataSearch = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Table Data Search']"));
+        tableDataSearch.click();
+        WebElement inputForm = driver.findElement(By.xpath("//*[@id='task-table-filter']"));
+        waitDriver();
+        inputForm.sendKeys("Emily John");
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id='task-table']//tbody//tr[not(contains(@style,'display: none;'))]"));
+        Assert.assertEquals(elements.size(), 1);
+        String expectedResult = "4 Bootstrap 3 Emily John in progress";
+        Assert.assertEquals(expectedResult, elements.get(0).getText());
+    }
+
+    @Test
+    public void tenthTest() {
+        WebElement table = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Table']"));
+        table.click();
+        WebElement tableFilter = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Table Filter ']"));
+        tableFilter.click();
+        WebElement orangeButton = driver.findElement(By.xpath("//button[contains(text(), 'Orange')]"));
+        orangeButton.click();
+        List<WebElement> elementsOrange = driver.findElements(By.xpath("//tbody//i[contains(@style,'color:orange;')]"));
+        String color = "orange;";
+
+    }
+
+    @Test
+    public void eleventhTest() {
+
+        WebElement alertModuls = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Alerts & Modals']"));
+        alertModuls.click();
+        WebElement jsAlest = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Javascript Alerts']"));
+        jsAlest.click();
+        WebElement buttonClick = driver.findElement(By.xpath("//*[@id='confirm-demo']/parent::div/button"));
+        buttonClick.click();
+        driver.switchTo().alert().dismiss();
+        String display = driver.findElement(By.xpath("//*[@id='confirm-demo']")).getText();
+        Assert.assertEquals(display, "You pressed Cancel!");
+    }
+
+    @Test
+    public void twelfthTest() {
+        WebElement listBox = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='List Box']"));
+        listBox.click();
+        WebElement bootstrap = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Bootstrap List Box']"));
+        bootstrap.click();
+        WebElement morbiLeoRisus = driver.findElement(By.xpath("//ul[@class='list-group']//li[3]"));
+        morbiLeoRisus.click();
+        WebElement rightButton = driver.findElement(By.xpath("//button[contains(@class,'right')]"));
+        rightButton.click();
+        List<WebElement> elementMorbi = driver.findElements(By.xpath("//div[@class='well']//ul//li[6]"));
+        String expectedResult = "Morbi leo risus";
+        Assert.assertEquals(expectedResult, elementMorbi.get(0).getText());
+    }
+
+    @Test
+    public void thirteenthTest() {
+        WebElement listBox = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='List Box']"));
+        listBox.click();
+        WebElement jQueryListBox = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='JQuery List Box']"));
+        jQueryListBox.click();
+        Actions a = new Actions(driver);
+        a.keyDown(Keys.CONTROL);
+        WebElement alisa = driver.findElement(By.xpath("//*[text()='Alice']"));
+        alisa.click();
+        WebElement laura = driver.findElement(By.xpath("//*[text()='Laura']"));
+        laura.click();
+        WebElement giovanna = driver.findElement(By.xpath("//*[text()='Giovanna']"));
+        giovanna.click();
+        WebElement addButton = driver.findElement(By.xpath("//*[text()='Add']"));
+        addButton.click();
+        List<WebElement> pickListResult = driver.findElements(By.xpath("//select[contains(@class, 'pickListResult')]"));
     }
 }
 
