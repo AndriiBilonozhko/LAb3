@@ -234,7 +234,28 @@ public class Tests extends SetupDriver {
         giovanna.click();
         WebElement addButton = driver.findElement(By.xpath("//*[text()='Add']"));
         addButton.click();
-        List<WebElement> pickListResult = driver.findElements(By.xpath("//select[contains(@class, 'pickListResult')]"));
+        String alisaResult = driver.findElement(By.xpath("//select[contains(@class, 'pickListResult')]//*[text()='Alice']")).getText();
+        String lauraResult = driver.findElement(By.xpath("//select[contains(@class, 'pickListResult')]//*[text()='Laura']")).getText();
+        String giovannaResult = driver.findElement(By.xpath("//select[contains(@class, 'pickListResult')]//*[text()='Giovanna']")).getText();
+        String alisaExpectResult = "Alice";
+        String lauraExpectResult = "Laura";
+        String giovannaExpectResult = "Giovanna";
+        Assert.assertEquals(alisaResult, alisaExpectResult);
+        Assert.assertEquals(lauraResult, lauraExpectResult);
+        Assert.assertEquals(giovannaResult, giovannaExpectResult);
+    }
+
+    @Test
+
+    public void fourteenthTest(){
+        WebElement other = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Others']"));
+        other.click();
+        WebElement dynamicDataLoading = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Dynamic Data Loading']"));
+        dynamicDataLoading.click();
+        WebElement getButton = driver.findElement(By.xpath("//button[@id='save']"));
+        getButton.click();
+        WebElement loading = driver.findElement(By.xpath("//div[@id='loading']"));
+
     }
 }
 
