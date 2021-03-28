@@ -185,7 +185,9 @@ public class Tests extends SetupDriver {
         WebElement orangeButton = driver.findElement(By.xpath("//button[contains(text(), 'Orange')]"));
         orangeButton.click();
         List<WebElement> elementsOrange = driver.findElements(By.xpath("//tbody//i[contains(@style,'color:orange;')]"));
-        String color = "orange;";
+        for (WebElement element : elementsOrange) {
+            Assert.assertTrue(element.getAttribute("style").contains("orange"));
+        }
 
     }
 
@@ -247,15 +249,20 @@ public class Tests extends SetupDriver {
 
     @Test
 
-    public void fourteenthTest(){
+    public void fourteenthTest() throws InterruptedException {
         WebElement other = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Others']"));
         other.click();
         WebElement dynamicDataLoading = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Dynamic Data Loading']"));
         dynamicDataLoading.click();
         WebElement getButton = driver.findElement(By.xpath("//button[@id='save']"));
         getButton.click();
-        WebElement loading = driver.findElement(By.xpath("//div[@id='loading']"));
-
+        Thread.sleep(5000);
+        WebElement foto = driver.findElement(By.xpath("//div[@id='loading']/img"));
+        WebElement firstName = driver.findElement(By.xpath("//div[@id='loading']/br[2]"));
+        WebElement lastName = driver.findElement(By.xpath("//div[@id='loading']/br[4]"));
+        Assert.assertTrue(foto.isDisplayed());
+        Assert.assertTrue(firstName.isDisplayed());
+        Assert.assertTrue(lastName.isDisplayed());
     }
 }
 
