@@ -1,74 +1,20 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
-
-import static java.sql.DriverManager.getDriver;
 
 public class Tests extends SetupDriver {
 
 
-    @Test
-    public void firstTest() {
-
-        WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
-        inputForms.click();
-        WebElement simpleForm = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Simple Form Demo']"));
-        simpleForm.click();
-        WebElement enterMessage = driver.findElement(By.id("user-message"));
-        enterMessage.sendKeys("Hello, my name is");
-        WebElement showMessage = driver.findElement(By.xpath("//*[text()='Show Message']"));
-        showMessage.click();
-        String display = driver.findElement(By.xpath("//span[@id='display']")).getText();
-        Assert.assertEquals("Hello, my name is", display);
-
-    }
-
-    @Test
-
-    public void secondTest() {
 
 
-        WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
-        inputForms.click();
-        WebElement simpleForm = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Simple Form Demo']"));
-        simpleForm.click();
-        WebElement enterFirstMessage = driver.findElement(By.xpath("//*[@id='sum1']"));
-        enterFirstMessage.sendKeys("5");
-        WebElement enterSecondMessage = driver.findElement(By.xpath("//*[@id='sum2']"));
-        enterSecondMessage.sendKeys("2");
-        WebElement getTotal = driver.findElement(By.xpath("//*[text()='Get Total']"));
-        getTotal.click();
-        String displayValue = driver.findElement(By.xpath("//span[@id='displayvalue']")).getText();
-        Assert.assertEquals(Integer.parseInt(displayValue), 7);
-    }
 
-    @Test
 
-    public void treeTest() {
-
-        WebElement inputForms = driver.findElement(By.xpath("//a[text()='Input Forms']"));
-        inputForms.click();
-        WebElement checkboxDemo = driver.findElement(By.xpath("//ul[@id='treemenu']//a[text()='Checkbox Demo']"));
-        checkboxDemo.click();
-        WebElement optionOne = driver.findElement(By.xpath("//*[@class='cb1-element'][1]"));
-        optionOne.click();
-        WebElement optionTree = driver.findElement(By.xpath("//input[@class='cb1-element']/following::div[2]//input"));
-        optionTree.click();
-        Assert.assertTrue(optionOne.isSelected());
-        Assert.assertTrue(optionTree.isSelected());
-
-    }
 
     @Test
 
@@ -120,8 +66,8 @@ public class Tests extends SetupDriver {
         a.build().perform();
         WebElement getAll = driver.findElement(By.xpath("//*[@id='printAll']"));
         getAll.click();
-        String getallSelected = driver.findElement(By.xpath("//*[@class='getall-selected']")).getText();
-        Assert.assertEquals(getallSelected, "Options selected are : Florida,New York");
+        String getAllSelected = driver.findElement(By.xpath("//*[@class='getall-selected']")).getText();
+        Assert.assertEquals(getAllSelected, "Options selected are : Florida,New York");
     }
 
     @Test

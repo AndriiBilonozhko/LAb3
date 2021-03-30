@@ -34,7 +34,7 @@ public class SetupDriver {
     }
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -53,7 +53,7 @@ public class SetupDriver {
     }
 
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
 
     public void afterMethod() {
 
@@ -61,6 +61,12 @@ public class SetupDriver {
 
 
     }
+    protected By inputFormMenuItem = By.xpath("//a[text()='Input Forms']");
+     protected By simpleFormDemoMenuItem = By.xpath("//ul[@id='treemenu']//a[text()='Simple Form Demo']");
+
+    public WebElement find(By locator) {
+        return driver.findElement(locator);}
+
 
 
 }
