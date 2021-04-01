@@ -1,14 +1,15 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SetupDriver {
@@ -61,11 +62,38 @@ public class SetupDriver {
 
 
     }
+
     protected By inputFormMenuItem = By.xpath("//a[text()='Input Forms']");
-     protected By simpleFormDemoMenuItem = By.xpath("//ul[@id='treemenu']//a[text()='Simple Form Demo']");
+    protected By simpleFormDemoMenuItem = By.xpath("//ul[@id='treemenu']//a[text()='Simple Form Demo']");
 
     public WebElement find(By locator) {
-        return driver.findElement(locator);}
+        return driver.findElement(locator);
+    }
+
+    public String getPartOfString(String originalString, String regex, int index) {
+        String[] strings = originalString.split(regex);
+        return strings[index];
+
+    }
+
+    public void pickDaysWeek(WebElement element, String visibleText) {
+        Select select = new Select(element);
+        select.selectByVisibleText(visibleText);
+
+    }
+
+    public void selectElements (By firstSelectionElement, By secondSelectionElement){
+        Actions a = new Actions(driver);
+        a.keyDown(Keys.CONTROL);
+        a.pause(500);
+        a.moveToElement(find((By) firstSelectionElement)).click();
+        a.pause(500);
+        a.moveToElement(find((By) secondSelectionElement)).click();
+        a.pause(500);
+        a.build().perform();
+
+
+    }
 
 
 
