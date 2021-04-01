@@ -84,11 +84,14 @@ public class SetupDriver {
 
     public void selectElements (By firstSelectionElement, By secondSelectionElement){
         Actions a = new Actions(driver);
-        a.keyDown(Keys.CONTROL);
+
+        a.keyDown(Keys.LEFT_CONTROL);
         a.pause(500);
         a.moveToElement(find((By) firstSelectionElement)).click();
         a.pause(500);
         a.moveToElement(find((By) secondSelectionElement)).click();
+        a.pause(500);
+        a.keyUp(Keys.LEFT_CONTROL);
         a.pause(500);
         a.build().perform();
 
