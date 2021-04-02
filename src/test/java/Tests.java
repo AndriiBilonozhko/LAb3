@@ -41,7 +41,7 @@ public class Tests extends SetupDriver {
 
     }
 
-    @Test
+    @Test(enabled = false)
 
     public void eighthTest() {
 
@@ -56,7 +56,7 @@ public class Tests extends SetupDriver {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void ninthTest() {
 
         WebElement table = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Table']"));
@@ -72,7 +72,7 @@ public class Tests extends SetupDriver {
         Assert.assertEquals(expectedResult, elements.get(0).getText());
     }
 
-    @Test
+    @Test(enabled = false)
     public void tenthTest() {
         WebElement table = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Table']"));
         table.click();
@@ -87,7 +87,7 @@ public class Tests extends SetupDriver {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void eleventhTest() {
 
         WebElement alertModuls = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Alerts & Modals']"));
@@ -101,7 +101,7 @@ public class Tests extends SetupDriver {
         Assert.assertEquals(display, "You pressed Cancel!");
     }
 
-    @Test
+    @Test(enabled = false)
     public void twelfthTest() {
         WebElement listBox = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='List Box']"));
         listBox.click();
@@ -116,7 +116,7 @@ public class Tests extends SetupDriver {
         Assert.assertEquals(expectedResult, elementMorbi.get(0).getText());
     }
 
-    @Test
+    @Test(enabled = false)
     public void thirteenthTest() {
         WebElement listBox = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='List Box']"));
         listBox.click();
@@ -143,7 +143,7 @@ public class Tests extends SetupDriver {
         Assert.assertEquals(giovannaResult, giovannaExpectResult);
     }
 
-    @Test
+    @Test(enabled = false)
 
     public void fourteenthTest() throws InterruptedException {
         WebElement other = driver.findElement(By.xpath("//ul[@id='treemenu']//*[text()='Others']"));
