@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class Tests extends SetupDriver {
+public class AllTests extends SetupDriver {
 
 
 
@@ -20,7 +20,7 @@ public class Tests extends SetupDriver {
 
 
 
-    @Test
+    @Test(enabled = false)
 
     public void seventhTest() {
 
